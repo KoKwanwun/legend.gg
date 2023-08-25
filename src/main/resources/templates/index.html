@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/summoner.js"></script>
+  <script src="js/axios.js"></script>
   <title>legend.gg</title>
 </head>
 <body>
@@ -21,8 +23,8 @@
 <main>
   <section class="home">
     <div class="search-container">
-      <input type="text" placeholder="소환사명을 입력하세요">
-      <button>검색</button>
+      <input type="text" id="summonerName" placeholder="소환사명을 입력하세요">
+      <button onclick="searchSummoner()" >검색</button>
     </div>
   </section>
 </main>
