@@ -50,6 +50,7 @@ main {
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 .search-container input[type="text"] {
@@ -61,7 +62,7 @@ main {
 
 .search-container button {
     padding: 10px 20px;
-    background-color: #333;
+    background-color: #444;
     color: #fff;
     border: none;
     border-radius: 0 5px 5px 0;
@@ -81,4 +82,9 @@ main {
     color: #FFFFFF;
     font-size: 24px;
     font-weight: bold;
+}
+
+#home-title {
+    font-size: 70px;
+    margin-top: 30px;
 }

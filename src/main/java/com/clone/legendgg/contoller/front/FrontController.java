@@ -2,6 +2,7 @@ package com.clone.legendgg.contoller.front;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class FrontController {
@@ -11,8 +12,9 @@ public class FrontController {
         return "index";
     }
 
-//    @GetMapping("/champion")
-//    public String champion() {
-//        return "champion";
-//    }
+    @GetMapping("/{summonerName}")
+    public String searchSummoner(@PathVariable String summonerName) {
+        return "infoSummoner";
+    }
+
 }
