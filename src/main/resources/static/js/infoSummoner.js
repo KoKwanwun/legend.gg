@@ -1,10 +1,20 @@
-const config = {"Content-Type" : `application/json` };
-
 const summonerName = window.location.pathname.substring(1);
 
 axios.get('/api/lol/summoner/' + summonerName).then((Response)=>{
-    let summonerNameTest = document.getElementById('summonerNameTest');
-    summonerNameTest.innerText = Response.data;
+    let infoSummonerIcon = document.getElementById('infoSummonerIcon');
+    let infoSummonerName = document.getElementById('infoSummonerName');
+    let infoSummonerLevel = document.getElementById('infoSummonerLevel');
+    let infoSummonerSoloTier = document.getElementById('infoSummonerSoloTier');
+    let infoSummonerSoloWL = document.getElementById('infoSummonerSoloWL');
+    let infoSummonerFreeTier = document.getElementById('infoSummonerFreeTier');
+    let infoSummonerFreeWL = document.getElementById('infoSummonerFreeWL');
+    infoSummonerIcon.src = "https://ddragon.leagueoflegends.com/cdn/13.9.1/img/profileicon/" + Response.data.summoner.profileIconId + ".png";
+    infoSummonerName.innerText = Response.data.summoner.name;
+    infoSummonerLevel.innerText = "lv." + Response.data.summoner.summonerLevel;
+    infoSummonerSoloTier.innerHTML = "솔로랭크 : " + Response.data.summonerTier.soloTier + " " + Response.data.summonerTier.soloLeaguePoints + "p";
+    infoSummonerSoloWL.innerHTML = Response.data.summonerTier.soloWin + "승 " + Response.data.summonerTier.soloLoss + "패";
+    infoSummonerFreeTier.innerHTML = "자유랭크 : "  + Response.data.summonerTier.freeTier + " " + Response.data.summonerTier.freeLeaguePoints + "p";
+    infoSummonerFreeWL.innerHTML = Response.data.summonerTier.freeWin + "승 " + Response.data.summonerTier.freeLoss + "패";
 }).catch((Error)=>{
     console.log(Error);
 })

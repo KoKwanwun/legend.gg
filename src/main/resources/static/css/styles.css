@@ -4,14 +4,41 @@ body, h1, h2, h3, p, ul, li {
     padding: 0;
 }
 
+p {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+#infoSummonerSoloWL, #infoSummonerFreeWL, #infoSummonerLevel {
+    font-size: 15px;
+    color: #444;
+    margin-bottom: 15px;
+}
+
 body {
     font-family: Arial, sans-serif;
+    height: 100%;
+    background-color: #e9ecef;
 }
 
 header {
+    height: 10%;
     background-color: #333;
     color: #fff;
     padding: 10px 0;
+}
+
+main {
+    padding: 50px;
+    width: 50%;
+    margin: 0 auto;
+}
+
+section {
+    background-color: #FFFFFF;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 15px; /* 테두리 둥글게 설정 */
 }
 
 nav ul {
@@ -37,10 +64,6 @@ nav ul li a {
     padding-right: 20px;
 }
 
-main {
-    padding: 50px;
-}
-
 .home {
     text-align: center;
 }
@@ -49,8 +72,14 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
-    margin-bottom: 10px;
+    padding: 70px;
+}
+
+header .search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
 }
 
 .search-container input[type="text"] {
@@ -73,6 +102,13 @@ main {
     background-color: #444;
 }
 
+.info-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
 .logo {
     margin: 10px;
 }
@@ -86,5 +122,25 @@ main {
 
 #home-title {
     font-size: 70px;
-    margin-top: 30px;
+    padding: 70px;
+}
+
+#infoSummonerIcon {
+    width: 150px;
+    height: 150px;
+    border-radius: 15px; /* 테두리 둥글게 설정 */
+}
+
+.icon-container {
+    width: 25%;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.summoner-info {
+    width: 35%;
+}
+
+.summoner-tier {
+    width: 40%;
 }
