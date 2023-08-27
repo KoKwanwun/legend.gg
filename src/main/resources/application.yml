@@ -1,1 +1,3 @@
-
+riot:
+  api:
+    key: api_key
