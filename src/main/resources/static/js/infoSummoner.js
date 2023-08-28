@@ -18,19 +18,20 @@ axios.get('/api/lol/summoner/' + summonerName).then((Response)=>{
 
     let summonerId = Response.data.summoner.id;
 
-    // axios.get('/api/lol/match/progress/' + summonerId).then((Response)=>{
-    //     // let infoSummonerIcon = document.getElementById('infoSummonerIcon');
-    //     // infoSummonerName.innerText = Response.data.summoner.name;
-    //     console.log(Response.data)
-    //
-    // }).catch((Error)=>{
-    //     console.log(Error);
-    // })
+    axios.get('/api/lol/match/progress/' + summonerId).then((Response)=>{
+        // let infoSummonerIcon = document.getElementById('infoSummonerIcon');
+        // infoSummonerName.innerText = Response.data.summoner.name;
+        console.log(Response.data)
+
+    }).catch((Error)=>{
+        let progressMatch = document.getElementById('progressMatch');
+        progressMatch.innerHTML = "<p>현재 게임중이 아닙니다.</p>";
+    })
 
 }).catch((Error)=>{
     let mainHtml = document.getElementById('mainHtml');
     mainHtml.innerHTML = "<section id=\"summoner-search\">" +
-        "<p>소환사를 찾을 수 없습니다.</p>" +
+        "<p>소환사를 찾을 수 없거나 잠시 후에 다시 시도해주세요.</p>" +
         "</section>";
 })
 
