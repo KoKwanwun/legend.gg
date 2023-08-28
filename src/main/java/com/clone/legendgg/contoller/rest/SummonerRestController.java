@@ -3,13 +3,19 @@ package com.clone.legendgg.contoller.rest;
 import com.clone.legendgg.domain.dto.infoSummonerResponse;
 import com.clone.legendgg.domain.entity.SummonerTier;
 import com.clone.legendgg.domain.entity.Summoner;
+import com.clone.legendgg.exception.CustomException;
+import com.clone.legendgg.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientException;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 import java.util.Map;
@@ -18,7 +24,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Slf4j
 @RequestMapping("/api/lol/summoner")
-public class RestController {
+public class SummonerRestController {
     @Value("${riot.api.key}")
     private String API_KEY;
 
@@ -41,9 +47,19 @@ public class RestController {
                                         .path("lol/summoner/v4/summoners/by-name/" + summonerName)
                                         .build())
                         .header("X-Riot-Token", API_KEY)
-                        .retrieve()
-                        .bodyToMono(Map.class)
+                        .exchangeToMono(response -> {
+                            if(response.statusCode().is4xxClientError()) {
+                                return Mono.empty();
+                            } else {
+                                return response.bodyToMono(Map.class);
+                            }
+                        })
                         .block();
+
+        // 400번대 에러라면 예외처리
+        if (infoSummoner == null) {
+            throw new CustomException(ErrorCode.SUMMONER_NOT_FOUNDED);
+        }
 
         String id = infoSummoner.get("id").toString();
         Summoner summoner = Summoner.builder()

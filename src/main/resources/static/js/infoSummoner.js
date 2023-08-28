@@ -15,8 +15,23 @@ axios.get('/api/lol/summoner/' + summonerName).then((Response)=>{
     infoSummonerSoloWL.innerHTML = Response.data.summonerTier.soloWin + "승 " + Response.data.summonerTier.soloLoss + "패";
     infoSummonerFreeTier.innerHTML = "자유랭크 : "  + Response.data.summonerTier.freeTier + " " + Response.data.summonerTier.freeLeaguePoints + "p";
     infoSummonerFreeWL.innerHTML = Response.data.summonerTier.freeWin + "승 " + Response.data.summonerTier.freeLoss + "패";
+
+    let summonerId = Response.data.summoner.id;
+
+    // axios.get('/api/lol/match/progress/' + summonerId).then((Response)=>{
+    //     // let infoSummonerIcon = document.getElementById('infoSummonerIcon');
+    //     // infoSummonerName.innerText = Response.data.summoner.name;
+    //     console.log(Response.data)
+    //
+    // }).catch((Error)=>{
+    //     console.log(Error);
+    // })
+
 }).catch((Error)=>{
-    console.log(Error);
+    let mainHtml = document.getElementById('mainHtml');
+    mainHtml.innerHTML = "<section id=\"summoner-search\">" +
+        "<p>소환사를 찾을 수 없습니다.</p>" +
+        "</section>";
 })
 
 function searchSummoner() {
